@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebPanel.Services;
 
 namespace WebPanel
 {
@@ -39,7 +40,7 @@ namespace WebPanel
                     options.AccessDeniedPath = "/Account/AccessDenied";
                 });
 
-
+            services.AddHostedService<StartupService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -2,3 +2,8 @@
 2-Deep Learning About Async\Await 
 3-how to link to httpPost instead of httpget
 4-Global Exception handling
+5-CancelationToken
+
+
+---------------------------------------------------------
+1-test Custom Authorization

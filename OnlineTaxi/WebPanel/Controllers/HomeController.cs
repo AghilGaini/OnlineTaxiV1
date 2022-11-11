@@ -20,7 +20,6 @@ namespace WebPanel.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            await PermisionManager.SetPermisions(_context);
             var res = new PersonDTO();
 
             res.PersonsInfo.AddRange(await _context._person.GetAllDTOAsync());
