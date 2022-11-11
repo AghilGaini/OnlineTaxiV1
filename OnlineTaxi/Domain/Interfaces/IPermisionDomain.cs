@@ -11,5 +11,6 @@ namespace Domain.Interfaces
     public interface IPermisionDomain : IGenericDomain<PermisionDomain>
     {
         Task<IEnumerable<PermisionInfoDTO>> GetAllDTOAsync();
+        Task<bool> AddRange(IEnumerable<PermisionDomain> model);
     }
 }

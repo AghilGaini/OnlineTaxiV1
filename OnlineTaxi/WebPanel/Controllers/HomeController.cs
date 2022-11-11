@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Domain.Model;
 using Microsoft.AspNetCore.Authorization;
+using CoreService;
 
 namespace WebPanel.Controllers
 {
@@ -19,6 +20,7 @@ namespace WebPanel.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
+            await PermisionManager.SetPermisions(_context);
             var res = new PersonDTO();
 
             res.PersonsInfo.AddRange(await _context._person.GetAllDTOAsync());

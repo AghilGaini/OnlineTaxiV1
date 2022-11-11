@@ -20,6 +20,22 @@ namespace EfCoreDAL.Repositories
             _context = context;
         }
 
+        public async Task<bool> AddRange(IEnumerable<PermisionDomain> model)
+        {
+            try
+            {
+                if (model == null)
+                    return true;
+
+                await _context.AddRangeAsync(model);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public async Task<IEnumerable<PermisionInfoDTO>> GetAllDTOAsync()
         {
             return await _context.Permisions.Select(r => new PermisionInfoDTO()
