@@ -1,22 +1,23 @@
-﻿@model Domain.DTO.Security.RoleDTO
+﻿@model Domain.DTO.Security.UserDTO
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Roles";
+    ViewBag.Title = "Users";
 }
-<h1>نقش ها</h1>
+
+<h1>کاربران</h1>
 <table class="table table-dark">
     <thead>
         <tr>
-            <th>عنوان</th>
+            <th>نام کاربری</th>
             <th>عملیات</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Roles)
+        @foreach (var item in Model.Users)
         {
             <tr>
                 <td>
-                    @item.Title
+                    @item.Username
                 </td>
                 <td>
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"

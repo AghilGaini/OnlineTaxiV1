@@ -21,6 +21,84 @@ namespace WebPanel.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> Users()
+        {
+            var res = new UserDTO();
+
+            res.Users.AddRange(await _context._user.GetAllUsersDTOAsync());
+
+            res.Actions.Add(new ActionItems() { Title = "ویرایش", Action = "Edit", Controller = "Security" });
+            res.Actions.Add(new ActionItems() { Title = "مدیریت دسترسی", Action = "UserRole", Controller = "Security" });
+            res.Actions.Add(new ActionItems() { Title = "حذف", Action = "Delete", Controller = "Security" });
+
+            return View(res);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> UserRole(long Id)
+        {
+            var res = new UserRoleDTO();
+
+            var user = await _context._user.GetByIdAsync(Id);
+            if (user == null)
+            {
+                ModelState.AddModelError("", "کاربری پیدا نشد");
+                return View(res);
+            }
+
+            res.UserRoles.AddRange(await _context._role.GetAllDTOAsync());
+            res.UserId = user.Id;
+
+            var userRoleIds = await _context._userRole.GetAllRoleIdsByUserIdAsync(user.Id);
+
+            foreach (var item in res.UserRoles)
+            {
+                if (userRoleIds.Any(r => r == item.Id))
+                    item.IsSelected = true;
+            }
+
+            ViewBag.UserTitle = user.Username;
+
+            return View(res);
+        }
+        [HttpPost]
+        public async Task<IActionResult> UserRole(UserRoleDTO model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = await _context._user.GetByIdAsync(model.UserId);
+            if (user == null)
+            {
+                ModelState.AddModelError("", "کاربری پیدا نشد");
+                return View(model);
+            }
+
+            if (await _context._userRole.DeleteAllRolesByUserId(user.Id))
+            {
+                var newUserRole = new UserRoleDTO();
+                foreach (var item in model.UserRoles)
+                {
+                    if (item.IsSelected)
+                        newUserRole.UserRoles.Add(item);
+                }
+                newUserRole.UserId = user.Id;
+
+                if (await _context._userRole.InsertUserRoleRangeAsync(newUserRole))
+                {
+                    _context.Complete();
+
+                    return RedirectToAction("Users", "Security");
+                }
+            }
+
+            return View(model);
+        }
+
+
+        [HttpGet]
         public async Task<IActionResult> Roles()
         {
             var res = new RoleDTO();
@@ -66,6 +144,9 @@ namespace WebPanel.Controllers
         [HttpPost]
         public async Task<IActionResult> Permisions(PermisionDTO model)
         {
+            if (!ModelState.IsValid)
+                return View(model);
+
             var role = await _context._role.GetByIdAsync(model.RoleId);
             if (role == null)
             {

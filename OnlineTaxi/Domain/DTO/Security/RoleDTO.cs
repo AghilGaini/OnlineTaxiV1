@@ -20,5 +20,6 @@ namespace Domain.DTO.Security
         [Required]
         [StringLength(100, ErrorMessage = "حداکثر تعداد مجاز 100 میباشد")]
         public string Title { get; set; }
+        public bool IsSelected { get; set; } = false;
     }
 }

@@ -1,0 +1,42 @@
+﻿@model Domain.DTO.Security.UserRoleDTO
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "UserRole";
+}
+
+@if (ViewBag.UserTitle != null)
+{
+    <h1>مدیریت نقش @ViewBag.UserTitle</h1>
+}
+
+<form asp-action="UserRole" asp-controller="Security">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input asp-for="UserId" type="hidden" />
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th>عنوان</th>
+                <th>انتخاب</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.UserRoles.Count; i++)
+            {
+                <tr>
+                    <td>
+                        <input asp-for="@Model.UserRoles[i].Title" type="hidden">
+                        @Model.UserRoles[i].Title
+                    </td>
+                    <td>
+                        <input asp-for="@Model.UserRoles[i].IsSelected">
+                        <input asp-for="@Model.UserRoles[i].Id" type="hidden">
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-success">به روز رسانی</button>
+    <a asp-action="Users" asp-controller="Security" class="btn btn-danger">بازگشت</a>
+</form>
+
