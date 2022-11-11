@@ -107,7 +107,7 @@ namespace WebPanel.Filters
                     if (!roles.Any(r => r.Title.ToLower() == item.ToLower()))
                     {
                         context.Result = new ForbidResult();
-                        break;
+                        return;
                     }
                 }
             }
