@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Domain.Model;
 using System.Linq;
+using WebPanel.Filters;
+using CoreService;
 
 namespace WebPanel.Controllers
 {
@@ -20,6 +22,7 @@ namespace WebPanel.Controllers
             return View();
         }
 
+        [CustomAuthorization(PermisionManager.Permisions.Security_Users_HttpGet, "")]
         [HttpGet]
         public async Task<IActionResult> Users()
         {

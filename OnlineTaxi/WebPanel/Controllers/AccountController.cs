@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace WebPanel.Controllers
 {
-    
+
     public class AccountController : Controller
     {
         private readonly IUnitOfWork _context;
@@ -58,6 +58,7 @@ namespace WebPanel.Controllers
             }
 
             var claims = new List<Claim>();
+            claims.Add(new Claim(ClaimTypes.Name, model.Username));
             claims.Add(new Claim("Username", model.Username));
             claims.Add(new Claim("Id", user.Id.ToString()));
 
