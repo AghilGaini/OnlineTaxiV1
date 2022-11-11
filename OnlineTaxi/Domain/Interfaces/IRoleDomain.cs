@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Domain.DTO.Security;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace Domain.Interfaces
 {
     public interface IRoleDomain : IGenericDomain<RoleDomain>
     {
-
+        Task<IEnumerable<RoleInfoDTO>> GetAllDTOAsync();
     }
 }
