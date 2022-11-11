@@ -1,0 +1,52 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Map";
+}
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+      integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14="
+      crossorigin="" />
+
+<script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+        integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
+        crossorigin=""></script>
+<style>
+    #map {
+        height: 500px;
+    }
+</style>
+
+<div id="map"></div>
+
+
+<script type="text/javascript">
+    var currentLat =35.78023853564178;
+    var currentLng = 51.46740881600891;
+    var map = L.map('map',{
+        center : [currentLat,currentLng],
+        minZoom : 10,
+        maxZoom : 18,
+        zoom : 17
+    });
+
+    var tile = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+    {attribution : "&copy;عن تو این مملکت"}).addTo(map);
+
+    var circle = L.circle([currentLat,currentLng],{
+        fillOpacity :0.1,
+        radius : 15
+    }).addTo(map);
+
+    var popup = L.popup();
+
+    function onMapClick(e)
+    {
+        popup
+        .setLatLng(e.latlng)
+        .setContent('you clicked : ' + e.latlng.toString())
+        .openOn(map);
+    }
+
+    map.on('click',onMapClick);
+
+</script>

@@ -72,5 +72,11 @@ namespace WebPanel.Controllers
 
         }
 
+        [HttpGet]
+        public IActionResult Map()
+        {
+            return View();
+        }
+
     }
 }
