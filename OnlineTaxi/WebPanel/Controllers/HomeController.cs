@@ -3,9 +3,11 @@ using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Domain.Model;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebPanel.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly IUnitOfWork _context;

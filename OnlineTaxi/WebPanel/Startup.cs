@@ -1,6 +1,7 @@
 using Domain.Interfaces;
 using EfCoreDAL.Context;
 using EfCoreDAL.Repositories;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -23,12 +24,20 @@ namespace WebPanel
         {
             _configuration = configuration;
         }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(_configuration.GetConnectionString("Default")));
 
             services.AddMvc(options => options.EnableEndpointRouting = false);
             services.AddScoped<IUnitOfWork, UnitOfWorkRepository>();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = "/Account/Login";
+                    options.AccessDeniedPath = "/Account/AccessDenied";
+                });
 
 
         }
@@ -43,6 +52,9 @@ namespace WebPanel
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseMvc(routes =>
             {
