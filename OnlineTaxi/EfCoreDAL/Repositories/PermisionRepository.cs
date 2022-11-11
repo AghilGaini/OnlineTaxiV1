@@ -1,6 +1,8 @@
-﻿using Domain.Entities;
+﻿using Domain.DTO.Security;
+using Domain.Entities;
 using Domain.Interfaces;
 using EfCoreDAL.Context;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +18,16 @@ namespace EfCoreDAL.Repositories
         public PermisionRepository(ApplicationContext context) : base(context)
         {
             _context = context;
+        }
+
+        public async Task<IEnumerable<PermisionInfoDTO>> GetAllDTOAsync()
+        {
+            return await _context.Permisions.Select(r => new PermisionInfoDTO()
+            {
+                Id = r.Id,
+                Title = r.Title,
+                Value = r.Value
+            }).ToListAsync();
         }
     }
 }
