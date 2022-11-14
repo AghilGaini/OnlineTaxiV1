@@ -59,6 +59,5 @@ namespace WebPanel.SignalrClasses
                 await Clients.Caller.SendAsync("SignalRNotification", ex.Message);
             }
         }
-
     }
 }

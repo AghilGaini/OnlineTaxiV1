@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebPanel", "WebPanel\WebPanel.csproj", "{0CB98942-4382-4D7C-9720-09B11D10CC5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebPanel", "WebPanel\WebPanel.csproj", "{0CB98942-4382-4D7C-9720-09B11D10CC5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{1FCF3A95-8898-4CD7-B789-EDD04F9336B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{1FCF3A95-8898-4CD7-B789-EDD04F9336B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfCoreDAL", "EfCoreDAL\EfCoreDAL.csproj", "{71C1A78F-58B2-4DBD-AC7A-8F6F4F16C605}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EfCoreDAL", "EfCoreDAL\EfCoreDAL.csproj", "{71C1A78F-58B2-4DBD-AC7A-8F6F4F16C605}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreService", "CoreService\CoreService.csproj", "{AAEFBF27-B8B4-440B-A969-B670C298FA64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreService", "CoreService\CoreService.csproj", "{AAEFBF27-B8B4-440B-A969-B670C298FA64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{1FAE67F9-79E2-4A53-A110-4CC30D3BD81C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{AAEFBF27-B8B4-440B-A969-B670C298FA64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAEFBF27-B8B4-440B-A969-B670C298FA64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AAEFBF27-B8B4-440B-A969-B670C298FA64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FAE67F9-79E2-4A53-A110-4CC30D3BD81C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FAE67F9-79E2-4A53-A110-4CC30D3BD81C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FAE67F9-79E2-4A53-A110-4CC30D3BD81C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FAE67F9-79E2-4A53-A110-4CC30D3BD81C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
