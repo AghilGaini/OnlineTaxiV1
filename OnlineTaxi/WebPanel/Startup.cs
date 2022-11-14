@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebPanel.Services;
+using WebPanel.SignalrClasses;
 
 namespace WebPanel
 {
@@ -41,6 +42,8 @@ namespace WebPanel
                 });
 
             services.AddHostedService<StartupService>();
+
+            services.AddSignalR();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -60,6 +63,11 @@ namespace WebPanel
             app.UseMvc(routes =>
             {
                 routes.MapRoute("Default", "{Controller=Home}/{Action=Index}/{id?}");
+            });
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapHub<SignalRRequestTrip>("/RequestTrip");
             });
 
             //app.UseEndpoints(endpoints =>

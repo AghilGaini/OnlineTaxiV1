@@ -8,7 +8,7 @@ using CoreService;
 
 namespace WebPanel.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class HomeController : Controller
     {
         private readonly IUnitOfWork _context;
