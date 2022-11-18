@@ -11,9 +11,18 @@
 
     function Login()
     {
+
+        var entity ={};
+        entity.Username = $("#Username").val();
+        entity.Password = $("#Password").val();
+
+        entity = JSON.stringify(entity);
+
         $.ajax({
-            type: "GET",
-            url: "http://localhost/publish/WeatherForecast",
+            type: "POST",
+            url: "http://localhost/publish/Account",
+            data:entity,
+            contentType: "application/json",
             success: function (data) {
                 console.log(data);
             },
