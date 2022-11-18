@@ -9,7 +9,7 @@ using WebApi.Services;
 namespace WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[controller]/[action]")]
     public class AccountController : ControllerBase
     {
         private readonly IUnitOfWork _context;
