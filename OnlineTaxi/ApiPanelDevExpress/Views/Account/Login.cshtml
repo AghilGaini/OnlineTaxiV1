@@ -9,9 +9,10 @@
 
 <script type="text/javascript">
 
+    var res = {};
+
     function Login()
     {
-
         var entity ={};
         entity.Username = $("#Username").val();
         entity.Password = $("#Password").val();
@@ -24,7 +25,20 @@
             data:entity,
             contentType: "application/json",
             success: function (data) {
-                console.log(data);
+                res = data;
+
+                if(res.success == true)
+                {
+                    localStorage.setItem('token', res.data);
+                    alert(localStorage.getItem('token'));
+                }
+                else
+                {
+                    alert(res.errorMessage);
+                }
+
+
+                console.log(res);
             },
             error: function (req, status, error) {
                 console.log(msg);
