@@ -6,3 +6,4 @@
 -reports : total drivers,active drivers ,total payments, ....
 -navigation properties for tables
 -use config class for create tables
+-read nad update roles (permisions) from database (dont need version to update)

@@ -17,6 +17,7 @@ namespace EfCoreDAL.Repositories
         public IPermisionDomain _permision { get; set; }
         public IRolePermisionDomain _rolePermision { get; set; }
         public IUserRoleDomain _userRole { get; set; }
+        public IUserTypeDomain _userType { get; set; }
 
         public UnitOfWorkRepository(ApplicationContext context)
         {
@@ -27,6 +28,7 @@ namespace EfCoreDAL.Repositories
             _permision = new PermisionRepository(context);
             _rolePermision = new RolePermisionRepository(context);
             _userRole = new UserRoleRepository(context);
+            _userType = new UserTypeRepository(context);
         }
 
         public void Complete()
