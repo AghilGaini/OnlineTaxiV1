@@ -10,6 +10,7 @@ namespace Domain.Interfaces
     {
         Task<IEnumerable<T>> GetAllAsync();
         Task<T> GetByIdAsync(long id);
+        Task<bool> AddAsync(T model);
 
     }
 }

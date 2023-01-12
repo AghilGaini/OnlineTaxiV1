@@ -1,5 +1,5 @@
 ﻿@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
-@model Domain.DTO.Account.LoginDTO
+@model Domain.DTO.Account.RegisterDTO
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
@@ -11,17 +11,18 @@
 
     var res = {};
 
-    function Login()
+    function Register()
     {
         var entity ={};
         entity.Username = $("#Username").val();
         entity.Password = $("#Password").val();
+        entity.ConfirmPassword= $("#ConfirmPassword").val();
 
         entity = JSON.stringify(entity);
 
         $.ajax({
             type: "POST",
-            url: "http://localhost/publish/Account/Login",
+            url: "http://localhost/publish/Account/Register",
             data:entity,
             contentType: "application/json",
             success: function (data) {
@@ -41,7 +42,7 @@
                 console.log(res);
             },
             error: function (req, status, error) {
-                console.log(msg);
+                console.log(error);
             }
         });
     }
@@ -68,7 +69,7 @@
 <body>
     <div class="vh-100 d-flex justify-content-center align-items-center">
         <div class="col-md-4 p-5 shadow-sm border rounded-3">
-            <h2 class="text-center mb-4 text-primary">Login</h2>
+            <h2 class="text-center mb-4 text-primary">Register</h2>
             <div>
                 <div class="mb-3">
                     <label asp-for="Username" class="form-label">Username</label>
@@ -78,16 +79,13 @@
                     <label asp-for="Password" class="form-label">Password</label>
                     <input type="password" asp-for="Password" class="form-control border border-primary">
                 </div>
-                <p class="small"><a class="text-primary" href="forget-password.html">Forgot password?</a></p>
-                <div class="d-grid">
-                    <button class="btn btn-primary" onclick="Login()">Login</button>
+                <div class="mb-3">
+                    <label asp-for="ConfirmPassword" class="form-label">Confirm Password</label>
+                    <input type="password" asp-for="ConfirmPassword" class="form-control border border-primary">
                 </div>
-            </div>
-            <div class="mt-3">
-                <p class="mb-0  text-center">
-                    Don't have an account? 
-                    <a asp-controller="Account" asp-action="Register" class="text-primary fw-bold">Register</a>
-                </p>
+                <div class="d-grid">
+                    <button class="btn btn-primary" onclick="Register()">Register</button>
+                </div>
             </div>
         </div>
     </div>

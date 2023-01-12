@@ -18,6 +18,19 @@ namespace EfCoreDAL.Repositories
             _context = context;
         }
 
+        public async Task<bool> AddAsync(T model)
+        {
+            try
+            {
+                await _context.Set<T>().AddAsync(model);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public async Task<IEnumerable<T>> GetAllAsync()
         {
             return await _context.Set<T>().ToListAsync();

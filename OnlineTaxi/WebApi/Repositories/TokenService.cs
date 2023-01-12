@@ -13,7 +13,7 @@ namespace WebApi.Repositories
     {
         private const double EXPIRY_DURATION_MINUTES = 1;
 
-        public string BuildToken(string key, string issuer, LoginDTO user)
+        public string BuildToken(string key, string issuer, TokenDTO user)
         {
             var claims = new List<Claim>();
             claims.Add(new Claim(ClaimTypes.Name, user.Username));

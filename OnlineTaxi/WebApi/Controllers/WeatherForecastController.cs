@@ -35,34 +35,5 @@ namespace WebApi.Controllers
             _config = configuration;
             _context = context;
         }
-
-
-        [HttpGet]
-        public async Task<IEnumerable<WeatherForecast>> Get()
-        {
-            var adminUser = await _context._user.GetByUsernameAsync("admin");
-
-            var userDto = new LoginDTO()
-            {
-                Id = adminUser.Id,
-                Username = adminUser.Username,
-            };
-
-            string token = "";
-            if (adminUser != null)
-                token = _tokenService.BuildToken(_config["Jwt:Key"], _config["Jwt:Issuer"], userDto);
-
-            bool isValidToken = _tokenService.ValidateToken(_config["Jwt:Key"], _config["Jwt:Issuer"],
-                _config["Jwt:Issuer"], token);
-
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
-        }
     }
 }
