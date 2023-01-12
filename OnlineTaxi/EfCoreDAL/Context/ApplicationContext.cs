@@ -20,6 +20,7 @@ namespace EfCoreDAL.Context
         public DbSet<PermisionDomain> Permisions { get; set; }
         public DbSet<RolePermisionDomain> RolePermisions { get; set; }
         public DbSet<UserRoleDomain> UserRoles { get; set; }
+        public DbSet<UserTypeDomain> UserTypes { get; set; }
 
     }
 }
