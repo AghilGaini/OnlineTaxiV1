@@ -1,0 +1,6 @@
+-automapper
+-sweetAlert
+-create base js functions,base urls)
+-devexpress : required inputs
+-delete from 38th video my emails
+-reports : total drivers,active drivers ,total payments, ....
