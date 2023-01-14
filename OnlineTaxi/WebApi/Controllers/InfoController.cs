@@ -27,6 +27,8 @@ namespace WebApi.Controllers
 
                 var userTypes = await _context._userType.GetAllDTOAsync();
 
+                userTypes.RemoveAll(r => r.Title.ToLower() == "admin".ToLower());
+
                 res.Data = userTypes.ToList();
                 res.ResponseCode = 0;
                 res.Success = true;
