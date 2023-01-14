@@ -9,6 +9,10 @@
 
 <script type="text/javascript">
 
+    $( document ).ready(function() {
+        populateData();
+    });
+
     var res = {};
 
     function Test1()
@@ -43,6 +47,35 @@
         });
     }
 
+    async function populateData()
+    {
+        Test2();
+    }
+
+    async function Test2()
+    {
+        let response = await fetch("http://localhost/publish/info/alluserTypes");
+        if (response.ok) {
+          let result = await response.json();
+
+          var userRoles = $("#slUserRoles");
+
+          $.each(result.data,function (index,value){
+              console.log("index : " + index + "   value.title  : " + value.title + "   value.Id  : " + value.id);
+
+              userRoles.append($("<option />").val(value.id).text(value.title));
+
+
+          })
+
+          console.log(result);
+
+
+       } else {
+          alert(response.status);
+       }
+    }
+
 </script>
 
 
@@ -70,6 +103,17 @@
                 <div class="d-grid">
                     <button class="btn btn-primary" onclick="Test1()">Test1</button>
                 </div>
+
+                <div class="d-grid">
+                    <button class="btn btn-primary" onclick="Test2()">Test1</button>
+                </div>
+
+                <div>
+                    <label >drop down : </label>
+                    <select id="slUserRoles" name="userRoles">
+                    </select>
+                </div>
+
             </div>
         </div>
     </div>

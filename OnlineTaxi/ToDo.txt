@@ -7,3 +7,10 @@
 -navigation properties for tables
 -use config class for create tables
 -read nad update roles (permisions) from database (dont need version to update)
+-CRUD for controllers 
+-Create logger
+-why dont update cshtml after save changes and reload page
+
+
+
+?Partial class

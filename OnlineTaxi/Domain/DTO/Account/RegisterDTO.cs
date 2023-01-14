@@ -15,6 +15,7 @@ namespace Domain.DTO.Account
         public string Password { get; set; }
         [Required]
         public string ConfirmPassword { get; set; }
+        public long UserType { get; set; }
         public bool IsAdmin { get; set; }
 
     }

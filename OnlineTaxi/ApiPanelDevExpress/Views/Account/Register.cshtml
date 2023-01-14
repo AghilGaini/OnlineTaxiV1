@@ -9,6 +9,39 @@
 
 <script type="text/javascript">
 
+    $( document ).ready( async function() {
+        await populateData();
+    });
+
+    async function populateData()
+    {
+        await GetUserTypes();
+    }
+
+    async function GetUserTypes()
+    {
+        let response = await fetch("http://localhost/publish/info/alluserTypes");
+        if (response.ok) {
+          let result = await response.json();
+
+          var userRoles = $("#slUserRoles");
+
+          $.each(result.data,function (index,value){
+              console.log("index : " + index + "   value.title  : " + value.title + "   value.Id  : " + value.id);
+
+              userRoles.append($("<option />").val(value.id).text(value.title));
+
+
+          })
+
+          console.log(result);
+
+
+       } else {
+          alert(response.status);
+       }
+    }
+
     var res = {};
 
     function Register()
@@ -83,11 +116,18 @@
                     <label asp-for="ConfirmPassword" class="form-label">Confirm Password</label>
                     <input type="password" asp-for="ConfirmPassword" class="form-control border border-primary">
                 </div>
+
+                <div class="mb-3">
+                    <label class="form-label">User Type :</label>
+                    <select id="slUserRoles" name="userRoles">
+                    </select>
+                </div>
+
                 <div class="d-grid">
                     <button class="btn btn-primary" onclick="Register()">Register</button>
                 </div>
                 <div class="d-grid" style="margin-top:10px;">
-                    <a class="btn btn-success" asp-action="login" asp-controller="Account" >Back to login</a>
+                    <a class="btn btn-success" asp-action="login" asp-controller="Account">Back to login</a>
                 </div>
             </div>
         </div>

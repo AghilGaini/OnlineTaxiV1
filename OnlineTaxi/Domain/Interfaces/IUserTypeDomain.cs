@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Domain.DTO.Info;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,7 @@ namespace Domain.Interfaces
 {
     public interface IUserTypeDomain : IGenericDomain<UserTypeDomain>
     {
+        Task<List<UserTypeDTO>> GetAllDTOAsync()
+;
     }
 }
